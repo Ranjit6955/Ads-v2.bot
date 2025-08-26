@@ -9,8 +9,8 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 load_dotenv()
 
 # Get environment variables
-BOT_TOKEN = os.getenv("7016999277:AAEa5b_-_AxuhXp1U6JeP_eO822ORHHc0L4")
-BLOCK_ID = os.getenv("int-14249")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+BLOCK_ID = os.getenv("BLOCK_ID")
 
 if not BOT_TOKEN:
     raise RuntimeError("❌ Missing BOT_TOKEN env var. Set it in .env (local) or Render Dashboard (production).")
