@@ -2,8 +2,13 @@ import os
 import logging
 import requests
 from dotenv import load_dotenv
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
+from telegram.ext import (
+    Application,
+    CommandHandler,
+    CallbackQueryHandler,
+    ContextTypes,
+)
 
 # Load local .env (ignored on Render, but useful locally)
 load_dotenv()
@@ -19,7 +24,8 @@ if not BLOCK_ID:
 
 # Enable logging
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
 )
 logger = logging.getLogger(__name__)
 
@@ -61,9 +67,7 @@ def main():
 
     # Handlers
     application.add_handler(CommandHandler("start", start))
-    application.add_handler(
-        telegram.ext.CallbackQueryHandler(button_handler)
-    )
+    application.add_handler(CallbackQueryHandler(button_handler))
 
     # Run the bot
     application.run_polling()
